@@ -1,0 +1,31 @@
+git clone https://github.com/<your-username>/ci-cd-demo.git
+
+cd ci-cd-demo
+
+echo 'print("Hello! This is a simple app.")' > app.py
+
+cat app.py
+
+echo '#!/bin/bash
+echo "Building the app..."        # Simulate build step
+sleep 1
+echo "Running tests..."           # Simulate test step
+sleep 1
+echo "Deploying the app..."       # Simulate deploy step
+sleep 1
+echo "CI/CD workflow completed successfully!"' > deploy.sh
+
+chmod +x deploy.sh
+
+./deploy.sh
+
+Building the app...
+Running tests...
+Deploying the app...
+CI/CD workflow completed successfully!
+
+git add app.py deploy.sh
+
+git commit -m "Add simple CI/CD workflow"
+
+git push origin main
