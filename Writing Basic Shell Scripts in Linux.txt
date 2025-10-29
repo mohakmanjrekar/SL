@@ -1,0 +1,46 @@
+nano hello.sh
+
+#!/bin/bash
+echo "Hello, Welcome to Shell Scripting!"
+
+chmod +x hello.sh
+
+./hello.sh
+
+Hello, Welcome to Shell Scripting!
+
+nano calculator.sh
+
+#!/bin/bash
+echo "Enter first number:"
+read a
+echo "Enter second number:"
+read b
+sum=$((a + b))
+echo "Sum = $sum"
+
+chmod +x calculator.sh
+
+./calculator.sh
+
+Enter first number:
+10
+Enter second number:
+15
+Sum = 25
+
+echo "This is my file." > myfile.txt
+
+nano backup.sh
+
+#!/bin/bash
+cp myfile.txt myfile_backup.txt
+echo "Backup created!"
+
+chmod +x backup.sh
+
+./backup.sh
+
+Backup created!
+
+ls

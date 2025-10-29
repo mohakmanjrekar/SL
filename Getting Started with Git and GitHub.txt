@@ -1,0 +1,20 @@
+mkdir DemoRepo
+
+cd DemoRepo
+
+git init
+
+echo "This is my first Git experiment." > sample.txt
+
+git add .
+
+
+git status
+
+git commit -m "Initial commit of sample file"
+
+git remote add origin https://github.com/mohakmanjrekar/DemoRepo.git
+
+git remote -v
+
+git push -u origin main

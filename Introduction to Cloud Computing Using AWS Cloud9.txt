@@ -1,0 +1,10 @@
+ssh -i "C:\Users\MLS\Downloads\mykeypair.pem" ec2-user@98.93.19.29
+
+sudo yum update -y
+
+sudo yum install python3 -y
+
+nano test.py
+print("Hello EC2!")
+
+python3 test.py
