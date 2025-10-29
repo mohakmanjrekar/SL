@@ -1,0 +1,19 @@
+nano myscript.py
+
+from datetime import datetime
+
+with open("/full/path/to/log.txt", "a") as f:
+    f.write(f"Script ran at: {datetime.now()}\n")
+
+python3 myscript.py
+
+cat log.txt
+
+crontab -e
+
+* * * * * /usr/bin/python3 /full/path/to/myscript.py
+
+cat /full/path/to/log.txt
+
+Script ran at: 2025-10-29 23:10:01.123456
+Script ran at: 2025-10-29 23:11:01.234567
