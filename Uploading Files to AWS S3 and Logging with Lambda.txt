@@ -1,0 +1,102 @@
+Step 1: Create an S3 Bucket
+
+Go to AWS Management Console → S3.
+
+Click Create bucket.
+
+Enter a unique bucket name (e.g., my-upload-bucket-123).
+
+Choose a region (e.g., ap-south-1 for Mumbai).
+
+Keep other settings default → Click Create bucket.
+
+Step 2: Create a Lambda Function
+
+Go to AWS Management Console → Lambda.
+
+Click Create function → Choose Author from scratch.
+
+Function name: S3UploadLogger.
+
+Runtime: Python 3.9.
+
+Permissions:
+
+Choose Create a new role with basic Lambda permissions.
+
+Click Create function.
+
+Step 3: Add S3 Trigger to Lambda
+
+In your Lambda function page, go to Configuration → Triggers → Add trigger.
+
+Select S3 as the trigger source.
+
+Choose your bucket name (e.g., my-upload-bucket-123).
+
+Event type: PUT (Object Created).
+
+Optionally, specify a prefix or suffix (e.g., uploads/ or .jpg).
+
+Check the box "Add permission to invoke Lambda function".
+
+Click Add.
+
+Step 4: Add Lambda Code
+
+Paste the following Python code into the Lambda Code Source editor:
+
+import json
+
+def lambda_handler(event, context):
+    # Log the entire event received from S3
+    print("Received event: " + json.dumps(event, indent=2))
+    
+    # Extract bucket and file name
+    bucket_name = event['Records'][0]['s3']['bucket']['name']
+    file_name = event['Records'][0]['s3']['object']['key']
+    
+    print(f"File uploaded: {file_name} in bucket: {bucket_name}")
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f"Processed file {file_name} from bucket {bucket_name}")
+    }
+
+Step 5: Deploy the Function
+
+Click Deploy in the Lambda console.
+
+Confirm successful deployment message.
+
+Step 6: Upload a File to S3
+
+Go to your S3 bucket.
+
+Click Upload → Add files.
+
+Choose any file (e.g., test.txt).
+
+Click Upload.
+
+Step 7: Check Logs in CloudWatch
+
+Go to AWS Management Console → CloudWatch → Logs → Log groups.
+
+Find log group /aws/lambda/S3UploadLogger.
+
+Open the latest Log Stream.
+
+You’ll see output similar to:
+
+Received event: {
+  "Records": [
+    {
+      "s3": {
+        "bucket": {"name": "my-upload-bucket-123"},
+        "object": {"key": "test.txt"}
+      }
+    }
+  ]
+}
+File uploaded: test.txt in bucket: my-upload-bucket-123
