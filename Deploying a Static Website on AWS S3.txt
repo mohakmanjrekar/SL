@@ -1,0 +1,96 @@
+Procedure:
+Step 1: Create a Simple HTML File
+
+Create a file named index.html and add the following content:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Static Website</title>
+</head>
+<body>
+    <h1>Hello! This is my AWS S3 website.</h1>
+</body>
+</html>
+
+
+Save this file on your local computer.
+
+Step 2: Create an S3 Bucket
+
+Log in to the AWS Management Console.
+
+Go to S3 Service.
+
+Click Create bucket.
+
+Enter a unique bucket name (example: my-static-website-2025).
+
+Choose your AWS Region.
+
+Uncheck “Block all public access” → Confirm acknowledgment checkbox.
+
+Click Create bucket.
+
+Step 3: Upload Your Website Files
+
+Open the created bucket.
+
+Click Upload.
+
+Add the file index.html.
+
+Click Upload to finish.
+
+Step 4: Enable Static Website Hosting
+
+Go to the Properties tab of the bucket.
+
+Scroll to Static website hosting section.
+
+Click Edit → Choose Enable.
+
+Select Host a static website.
+
+In Index document, enter:
+
+index.html
+
+
+Click Save changes.
+
+Note down the Website endpoint URL (e.g., http://my-static-website-2025.s3-website-us-east-1.amazonaws.com).
+
+Step 5: Set Bucket Policy for Public Access
+
+Go to the Permissions tab → Click Bucket Policy.
+
+Paste the following JSON policy (replace your bucket name):
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-static-website-2025/*"
+    }
+  ]
+}
+
+
+Click Save changes.
+
+Step 6: Access Your Website
+
+Go back to Properties → Static website hosting.
+
+Copy the Endpoint URL.
+
+Open it in your web browser.
+
+You should see:
+
+Hello! This is my AWS S3 website.
