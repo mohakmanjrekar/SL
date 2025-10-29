@@ -1,0 +1,19 @@
+sudo apt install htop
+
+htop
+
+q
+
+sudo apt install net-tools
+
+
+netstat -tuln
+
+
+netstat -tulpn
+
+
+netstat -ant
+
+
+netstat -r
